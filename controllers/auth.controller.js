@@ -37,8 +37,7 @@ exports.signup = (req, res) => {
               res.status(500).send({ message: err });
               return;
             }
-
-            res.send({ message: "User was registered successfully!" });
+            sendUser(user);
           });
         }
       );
@@ -55,9 +54,20 @@ exports.signup = (req, res) => {
             res.status(500).send({ message: err });
             return;
           }
-
-          res.send({ message: "User was registered successfully!" });
+          sendUser(user);
         });
+      });
+    }
+    function sendUser(user) {
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: "30d",
+      });
+      res.status(200).send({
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        accessToken: token,
       });
     }
   });
@@ -99,6 +109,7 @@ exports.signin = (req, res) => {
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
+      console.log(user);
       res.status(200).send({
         id: user._id,
         email: user.email,
