@@ -9,7 +9,6 @@ app.use((req, res, next) => {
   next();
 });
 const db = require("./models");
-const dbConfig = require("./config/db.config.js");
 const Role = db.role;
 dotenv.config();
 db.mongoose
@@ -67,6 +66,7 @@ app.get("/", (req, res) => {
 
 require("./routes/auth.routes.js")(app);
 require("./routes/user.routes.js")(app);
+require("./routes/emploee.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
