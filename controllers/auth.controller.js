@@ -63,7 +63,7 @@ exports.signup = (req, res) => {
         expiresIn: "30d",
       });
       res.status(200).send({
-        id: user.id,
+        id: user._id,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
@@ -109,7 +109,6 @@ exports.signin = (req, res) => {
       for (let i = 0; i < user.roles.length; i++) {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
-      console.log(user);
       res.status(200).send({
         id: user._id,
         email: user.email,
