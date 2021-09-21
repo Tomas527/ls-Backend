@@ -1,5 +1,5 @@
 const db = require("../models");
-const Emploee = db.emploee;
+const Emploee = db.user;
 
 exports.getAll = (req, res) => {
   Emploee.find()
@@ -73,22 +73,21 @@ exports.delete = (req, res) => {
     });
 };
 
-exports.create = (req, res) => {
-  const emploee = new Emploee({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    phone: req.body.phone,
-    address: req.body.address,
-    roll: req.body.roll,
-  });
-  emploee
-    .save(emploee)
-    .then((date) => {
-      res.send(date);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Something went wrong: creating emploee",
-      });
-    });
-};
+// exports.signNewEmploee = (req, res) => {
+//   const id = req.params.id
+//   const emploee = new Emploee({
+//     phone: req.body.phone,
+//     address: req.body.address,
+//     roll: req.body.roll,
+//   });
+//   emploee
+//     .save(emploee)
+//     .then((date) => {
+//       res.send(date);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message: err.message || "Something went wrong: creating emploee",
+//       });
+//     });
+// };
