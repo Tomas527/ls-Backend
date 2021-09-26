@@ -10,7 +10,6 @@ const User = mongoose.model(
       phone: String,
       address: String,
       roll: String,
-      profileImage: String,
       isHired: { type: Boolean, default: false },
       roles: [
         {
