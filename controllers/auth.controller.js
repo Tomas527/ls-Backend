@@ -12,6 +12,7 @@ exports.signup = (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
+    roles: req.body.role,
   });
 
   user.save((err, user) => {
@@ -68,6 +69,7 @@ exports.signup = (req, res) => {
         firstName: user.firstName,
         lastName: user.lastName,
         accessToken: token,
+        roles: user.roles,
       });
     }
   });

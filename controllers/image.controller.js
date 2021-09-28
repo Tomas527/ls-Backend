@@ -30,7 +30,6 @@ exports.uploadImage = async (req, res, next) => {
       });
     });
   } catch (err) {
-    console.log("error retriving file");
     console.log(err);
   }
 };

@@ -13,21 +13,6 @@ exports.getAll = (req, res) => {
     });
 };
 
-exports.findOne = (req, res) => {
-  const id = req.params.id;
-  Emploee.findById(id)
-    .then((data) => {
-      if (!data) {
-        res.status(404).send({ message: "Not found Emploee with id " + id });
-      } else res.send(data);
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .send({ message: "Error retriving emploee with id " + id });
-    });
-};
-
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({
@@ -72,22 +57,3 @@ exports.delete = (req, res) => {
       });
     });
 };
-
-// exports.signNewEmploee = (req, res) => {
-//   const id = req.params.id
-//   const emploee = new Emploee({
-//     phone: req.body.phone,
-//     address: req.body.address,
-//     roll: req.body.roll,
-//   });
-//   emploee
-//     .save(emploee)
-//     .then((date) => {
-//       res.send(date);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: err.message || "Something went wrong: creating emploee",
-//       });
-//     });
-// };
